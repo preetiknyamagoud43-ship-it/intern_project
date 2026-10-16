@@ -1,0 +1,161 @@
+/* ================================================
+   Calculator – Stylesheet
+   Theme: dark glassmorphism inspired by iOS calc
+   ================================================ */
+
+/* Reset & base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  font-family: "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+}
+
+/* ── Calculator shell ── */
+.calculator {
+  width: 340px;
+  background: rgba(30, 30, 30, 0.92);
+  border-radius: 28px;
+  padding: 24px 20px 20px;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ── Title ── */
+.calc-title {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* ── Display ── */
+.display {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 16px;
+  padding: 16px 20px 12px;
+  margin-bottom: 20px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Expression (small, upper line) */
+.expression {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.4);
+  min-height: 22px;
+  word-break: break-all;
+  text-align: right;
+  transition: all 0.2s ease;
+}
+
+/* Main result / current number */
+.result {
+  font-size: 48px;
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  word-break: break-all;
+  text-align: right;
+  transition: font-size 0.15s ease;
+}
+
+/* Shrink font for very long numbers */
+.result.small { font-size: 32px; }
+.result.xsmall { font-size: 22px; }
+
+/* ── Button grid ── */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* ── Base button ── */
+.btn {
+  height: 68px;
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: 400;
+  cursor: pointer;
+  outline: none;
+  transition: filter 0.1s ease, transform 0.08s ease, box-shadow 0.1s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: scale(0.93);
+  filter: brightness(0.85);
+}
+
+/* Wide button (spans 2 columns) */
+.btn.wide {
+  border-radius: 34px;
+  grid-column: span 2;
+}
+
+/* ── Button colour variants ── */
+
+/* Number buttons – dark grey */
+.btn-number {
+  background: #333333;
+  color: #ffffff;
+}
+.btn-number:hover { filter: brightness(1.18); }
+
+/* Utility buttons (AC, +/-, %) – light grey */
+.btn-utility {
+  background: #a5a5a5;
+  color: #1c1c1c;
+  font-weight: 500;
+}
+.btn-utility:hover { filter: brightness(1.12); }
+
+/* Operator buttons (÷, ×, −, +) – orange */
+.btn-operator {
+  background: #ff9f0a;
+  color: #ffffff;
+}
+.btn-operator:hover { filter: brightness(1.15); }
+
+/* Active operator highlight */
+.btn-operator.active-op {
+  background: #ffffff;
+  color: #ff9f0a;
+}
+
+/* Equals button – orange (same family) */
+.btn-equals {
+  background: #ff9f0a;
+  color: #ffffff;
+}
+.btn-equals:hover { filter: brightness(1.15); }
+
+/* ── Error state on display ── */
+.display.error .result {
+  color: #ff453a;
+  font-size: 28px;
+}
